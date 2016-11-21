@@ -10,9 +10,10 @@
     UIView* rotator;
     CAShapeLayer* ring;
     
-    CGFloat _radius;
-    CGFloat _stroke;
-    UIColor* _color;
+    CGFloat radius;
+    CGFloat stroke;
+    UIColor* color;
+
     CAMediaTimingFunction* curve;
     NSInteger offset;
     
@@ -36,15 +37,15 @@ static const CGFloat shrinkDelay = 0.85 * stretchDuration;
 }
 
 
-- (instancetype)initWithCenter:(CGPoint)center radius:(CGFloat)radius stroke:(CGFloat)stroke andColor:(UIColor *)color;
+- (instancetype)initWithCenter:(CGPoint)center radius:(CGFloat)_radius stroke:(CGFloat)_stroke andColor:(UIColor *)_color;
 {
     self = [super initWithFrame:(CGRect){center.x - _radius, center.y - _radius, _radius * 2, _radius * 2}];
     
     if(self)
     {
-        _radius = radius;
-        _stroke = stroke;
-        _color = color;
+        radius = _radius;
+        stroke = _stroke;
+        color = _color;
         curve = [CAMediaTimingFunction functionWithControlPoints:0.72 :0.0 :0.28 :1.0];
         offset = -(maximumArcInDegrees - minimumArcInDegrees);
 
@@ -73,6 +74,7 @@ static const CGFloat shrinkDelay = 0.85 * stretchDuration;
     }
 }
 
+
 - (void)stopAnimating
 {
     if(isAnimating)
@@ -92,6 +94,7 @@ static const CGFloat shrinkDelay = 0.85 * stretchDuration;
     }
 }
 
+
 - (BOOL)isAnimating
 {
     return isAnimating;
@@ -109,11 +112,11 @@ static const CGFloat shrinkDelay = 0.85 * stretchDuration;
     
     [ring removeFromSuperlayer];
     ring = CAShapeLayer.layer;
-    ring.path = [UIBezierPath bezierPathWithArcCenter:rotator.center radius:_radius startAngle:D2R(offsetf) endAngle:D2R(offsetf + maximumArcInDegrees) clockwise:YES].CGPath;
+    ring.path = [UIBezierPath bezierPathWithArcCenter:rotator.center radius:radius startAngle:D2R(offsetf) endAngle:D2R(offsetf + maximumArcInDegrees) clockwise:YES].CGPath;
     ring.position = CGPointZero;
     ring.fillColor = UIColor.clearColor.CGColor;
-    ring.strokeColor = _color.CGColor;
-    ring.lineWidth = _stroke;
+    ring.strokeColor = color.CGColor;
+    ring.lineWidth = stroke;
     ring.lineCap = kCALineCapSquare;
     [rotator.layer addSublayer:ring];
     

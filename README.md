@@ -7,15 +7,15 @@ Similar to UIActivityIndicatorView:
 
 ```
 //For default style just specify the center position for the indicator:
-EYMaterialActivityIndicatorView* v = [EYMaterialActivityIndicatorView.alloc initWithCenter:(CGPoint){100,150}];
+EYMaterialActivityIndicatorView* activityIndicatorView = [EYMaterialActivityIndicatorView.alloc initWithCenter:(CGPoint){100,150}];
     
 
 //Or for custom style specify radius, stroke and color, in addition to center:
-EYMaterialActivityIndicatorView* v = [EYMaterialActivityIndicatorView.alloc initWithCenter:(CGPoint){100,150} radius:40 stroke:10 andColor:UIColor.redColor];
+EYMaterialActivityIndicatorView* activityIndicatorView = [EYMaterialActivityIndicatorView.alloc initWithCenter:(CGPoint){100,150} radius:40 stroke:10 andColor:UIColor.redColor];
 
 
 //And add it as usual
-[self.view addSubview:v];
+[self.view addSubview:activityIndicatorView];
 ```
 
 
